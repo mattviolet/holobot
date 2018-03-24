@@ -14,7 +14,7 @@ def webhook():
 
   # We don't want to reply to ourselves!
   if data['text'] == 'RoastLevine':
-    msg = "Levine smells like shit"
+    msg = 'Levine smells like shit'
     send_message(msg)
 
   return "ok", 200
@@ -23,7 +23,7 @@ def webhook():
   url  = 'https://api.groupme.com/v3/bots/post'
 
   data = {
-          'bot_id' : os.getenv(GROUPME_BOT_ID),
+          'bot_id' : '274e7756a1d2efb25d5d832cb6',
           'text'   : msg,
          }
   request = Request(url, urlencode(data).encode())
