@@ -18,13 +18,20 @@ def webhook():
   data = request.get_json()
 
   #contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=Levine&insult=apptest").read()
-  message = data[text].split('')
+  #either [roast, name] or [addRoast, name, insult]
+  message = data['text'].split('')
+  # either roast or addRoast
   command = message[0].lower()
 
+
   if (command == 'roast'):
-  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1])
+  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
   	msg = contents.replace('""', '')
   	send_message()
+  else if (command == 'addRoast'):
+  	roast = (" ".join(message[2:])
+  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + message[1].lower() + "&insult=" + roast).read()
+
 
   #print(contents)
   # We don't want to reply to ourselves!
