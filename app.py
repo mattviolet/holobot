@@ -23,7 +23,7 @@ def webhook():
   # either roast or addRoast
   command = message[0].lower()
 
-
+  print(command)
   if (command == 'roast'):
   	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
   	msg = contents.replace('""', '')
@@ -34,11 +34,7 @@ def webhook():
 
 
   #print(contents)
-  # We don't want to reply to ourselves!
-  if data['text'] == 'RoastLevine':
-    msg = contents.replace('""', '')
-    send_message(msg)
-
+  # We don't want to reply to ourselves
   return "ok", 200
 
 def send_message(msg):
