@@ -17,11 +17,11 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
 
-  contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=Levine").read()
+  contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=Levine&insult=apptest").read()
   #print(contents)
   # We don't want to reply to ourselves!
   if data['text'] == 'RoastLevine':
-    msg = contents
+    msg = contents.replace('""', '')
     send_message(msg)
 
   return "ok", 200
