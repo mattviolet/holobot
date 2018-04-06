@@ -28,7 +28,7 @@ def webhook():
   	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
   	msg = contents.replace('""', '')
   	send_message()
-  elseif (command == 'addRoast'):
+  elif (command == 'addRoast'):
   	roast = (" ".join(message[2:])
   	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + message[1].lower() + "&insult=" + roast).read()
 
