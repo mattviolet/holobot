@@ -30,7 +30,7 @@ def webhook():
   	send_message()
   elif (command == 'addRoast'):
   	roast = (" ".join(message[2:])
-  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + message[1].lower() + "&insult=" + roast).read()
+  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=matt&insult=apptest").read()
 
 
   #print(contents)
