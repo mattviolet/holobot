@@ -19,7 +19,7 @@ def webhook():
 
   #contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=Levine&insult=apptest").read()
   #either [roast, name] or [addRoast, name, insult]
-  message = data['text'].split('')
+  message = data['text'].split(' ')
   # either roast or addRoast
   command = message[0].lower()
 
