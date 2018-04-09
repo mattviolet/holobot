@@ -25,15 +25,14 @@ def webhook():
 
   print(command)
   if (command == 'roast'):
-  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
+  	#ontents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
   	msg = contents.replace('""', '')
   	send_message()
-  elif (command == 'addRoast'):
+  elif (command == 'addroast'):
   	roast = (" ".join(message[2:])
-  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=matt&insult=apptest").read()
+  	#contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=matt&insult=apptest")
 
 
-  #print(contents)
   # We don't want to reply to ourselves
   return "ok", 200
 
