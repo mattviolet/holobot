@@ -4,7 +4,8 @@ import os
 import json
 import urllib.request
 
-from urllib.parse import urlencode
+
+from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
 from flask import Flask, request
@@ -17,22 +18,32 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
 
-  #contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=Levine&insult=apptest").read()
-  #either [roast, name] or [addRoast, name, insult]
+  # if (data['text'] == 'add'):
+  #   print('reached here')
+  #   string = "appendtest space"
+  #   ##learn how to escape just spaces
+  #   link = urllib.parse.quote("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=matt&insult=" + string, safe='/:?=&')
+  #   contents = urllib.request.urlopen(link).read()
+
+
+  ## either [roast, name] or [addRoast, name, insult]
   message = data['text'].split(' ')
-  # either roast or addRoast
+  ## either roast or addRoast
   command = message[0].lower()
 
+  if (len(message) > 2):
+    roast = " ".join(message[2:])
+
   print(command)
-  if (command == 'roast'):
-  	contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower())
-  	#msg = contents.replace('""', ' ')
-  	print(contents)
-  	send_message()
-  elif (command == 'addroast'):
-  	#roast = (" ".join(message[2:])
-  	print("roast")
-  	#contents = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=matt&insult=apptest")
+  if ((command == 'roast') and (len(message) > 1)):
+    msg = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower()).read()
+    send_message(msg)
+  elif ((command == 'addroast') and (len(message)> 2)):
+      name = message[1].lower()
+      #print(name)
+      #print(roast)
+      link = urllib.parse.quote("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + name + "&insult=" + roast, safe='/:?=&')
+      contents = urllib.request.urlopen(link).read()
 
 
   # We don't want to reply to ourselves
