@@ -42,8 +42,8 @@ def webhook():
       name = message[1].lower()
       #print(name)
       #print(roast)
-      print(link)
       link = urllib.parse.quote("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + name + "&insult=" + roast, safe='/:?=&')
+      print(link)
       contents = urllib.request.urlopen(link).read()
 
 
