@@ -32,7 +32,7 @@ def webhook():
   command = message[0].lower()
 
   if (len(message) > 2):
-    roast = " ".join(message[2:])
+    roast = " ".join(message[2:]).replace(u"\2019", "'")
 
   print(command)
   if ((command == 'roast') and (len(message) > 1)):
