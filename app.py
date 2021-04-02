@@ -4,11 +4,11 @@ import os
 import json
 import urllib.request
 
-
 from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
 from flask import Flask, request
+import requests
 
 app = Flask(__name__)
 
@@ -27,7 +27,8 @@ def webhook():
 
   print(command)
   if ((command == 'roast') and (len(message) > 1)):
-    msg = urllib.request.urlopen("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult?name=" + message[1].lower()).read()
+    payload = {'name': message[1].lower()}
+    msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult", params=payload)
     send_message(msg)
   elif ((command == 'addroast') and (len(message)> 2)):
       name = message[1].lower()
