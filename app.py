@@ -29,7 +29,8 @@ def webhook():
   if ((command == 'roast') and (len(message) > 1)):
     payload = {'name': message[1].lower()}
     msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult", params=payload)
-    send_message(msg)
+    print(msg)
+    ##send_message(msg)
   elif ((command == 'addroast') and (len(message)> 2)):
       name = message[1].lower()
       #print(name)
