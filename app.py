@@ -8,7 +8,7 @@ from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
 from flask import Flask, request
-##import requests
+import requests
 
 app = Flask(__name__)
 
