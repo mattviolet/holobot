@@ -26,10 +26,10 @@ def webhook():
     roast = " ".join(message[2:]).replace(u"\2019", "'")
 
   print(command)
-  #if ((command == 'roast') and (len(message) > 1)):
-    #payload = {'name': message[1]}
-    #msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult?name=" + message[1].lower()).read()
-    #print(msg)
+  if ((command == 'roast') and (len(message) > 1)):
+    payload = {'name': message[1]}
+    msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult?name=" + message[1].lower()).read()
+    print(msg)
     #send_message(msg)
   #elif ((command == 'addroast') and (len(message)> 2)):
       #name = message[1].lower()
