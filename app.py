@@ -27,7 +27,7 @@ def webhook():
 
   print(command)
   if ((command == 'roast') and (len(message) > 1)):
-    msg = urllib.request.urlopen("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/get-insult?name=" + message[1].lower()).read()
+    msg = urllib.request.urlopen("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult?name=" + message[1].lower()).read()
     send_message(msg)
   elif ((command == 'addroast') and (len(message)> 2)):
       name = message[1].lower()
@@ -44,8 +44,8 @@ def webhook():
 def send_message(msg):
   url  = 'https://api.groupme.com/v3/bots/post'
 
-  data = {
-          'bot_id' : '274e7756a1d2efb25d5d832cb6',
+  data = { 
+          'bot_id' : '2e5e052a7c5b46862969084b43', #I want to use a heroku config variable for this to follow best practices :)
           'text'   : msg,
          }
   request = Request(url, urlencode(data).encode())
