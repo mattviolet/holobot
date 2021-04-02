@@ -8,7 +8,7 @@ from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
 from flask import Flask, request
-import requests
+##import requests
 
 app = Flask(__name__)
 
@@ -26,18 +26,18 @@ def webhook():
     roast = " ".join(message[2:]).replace(u"\2019", "'")
 
   print(command)
-  if ((command == 'roast') and (len(message) > 1)):
-    payload = {'name': message[1].lower()}
-    msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult", params=payload)
-    print(msg)
-    ##send_message(msg)
-  elif ((command == 'addroast') and (len(message)> 2)):
-      name = message[1].lower()
+  #if ((command == 'roast') and (len(message) > 1)):
+    #payload = {'name': message[1]}
+    #msg = requests.get("https://nzj7ckgwkf.execute-api.us-east-2.amazonaws.com/Production/get-insult?name=" + message[1].lower()).read()
+    #print(msg)
+    #send_message(msg)
+  #elif ((command == 'addroast') and (len(message)> 2)):
+      #name = message[1].lower()
       #print(name)
       #print(roast)
-      link = urllib.parse.quote("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + name + "&insult=" + roast, safe='/:?=&')
-      print(link)
-      contents = urllib.request.urlopen(link).read()
+      #link = urllib.parse.quote("https://ngk7xk5ra5.execute-api.us-east-1.amazonaws.com/prod/add-insult?name=" + name + "&insult=" + roast, safe='/:?=&')
+      #print(link)
+      #contents = urllib.request.urlopen(link).read()
 
 
   # We don't want to reply to ourselves
