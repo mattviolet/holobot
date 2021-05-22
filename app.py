@@ -17,6 +17,8 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
 
+  print(data)
+  print("i just receieved a post request")
   ## either [roast, name] or [addRoast, name, insult]
   message = data['text'].split(' ')
   ## either roast or addRoast
