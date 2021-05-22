@@ -17,7 +17,7 @@ def webhook():
   data = request.get_json()
 
   ## either [roast, name] or [addRoast, name, insult]
-  message = data['text'].split(' ')
+  message = request.get_json()['text'].split(' ')
   ## either roast or addRoast
   command = message[0].lower()
 
