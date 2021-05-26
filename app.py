@@ -60,7 +60,7 @@ def webhook():
     names_list.sort()
     print(names_list)
     send_message(" ".join(names_list))
-  elif(command == 'holobot help'):
+  elif(command == 'help'):
       help_text = "Hi! Thanks for using holobot! :) roast someone by sending 'roast name'. See names by just typing 'names'. add a roast by typing 'addroast name roast'. Let me know what other features you'd like to be added! "
       send_message(help_text)
   # We don't want to reply to ourselves
