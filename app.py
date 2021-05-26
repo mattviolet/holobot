@@ -29,11 +29,7 @@ def webhook():
   ## either roast or addRoast
   command = message[0].lower()
   target = names.find_one({"name" : name })
-  print(target)
 
-
-  print("this is the message: " + data['text'])
-  print("")
   if ((command == 'roast') and (len(message) > 1)): 
     roast = random.choice(target['insults'])
     send_roast(roast)
@@ -53,10 +49,6 @@ def webhook():
         { 'insults' : new_insults }  
       })
 
-      for target in names.find():
-        print("new object: ")
-        print(target)
-
   # We don't want to reply to ourselves
   return "ok", 200
 
@@ -68,9 +60,6 @@ def send_roast(roast):
           'bot_id' : '2e5e052a7c5b46862969084b43', #I want to use a heroku config variable for this to follow best practices :)
           'text'   : roast,
          }
-
-  print("The data you are about to send to the server")
-  print(payload)
 
   reqString = json.dumps(payload)
   request = requests.post(groupme, data = reqString)
