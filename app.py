@@ -69,7 +69,7 @@ def send_message(message):
   #url = 'http://localhost:5000/'
 
   payload = { 
-          'bot_id' : '2e5e052a7c5b46862969084b43', #I want to use a heroku config variable for this to follow best practices :)
+          'bot_id' : '274e7756a1d2efb25d5d832cb6', #I want to use a heroku config variable for this to follow best practices :)
           'text'   : message,
          }
 
