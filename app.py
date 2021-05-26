@@ -25,39 +25,44 @@ def webhook():
   #print(data)
   ## either [roast, name] or [addRoast, name, insult]
   message = data['text'].split(' ')
-  name = message[1]
   ## either roast or addRoast
   command = message[0].lower()
-  target = names.find_one({"name" : name })
 
   if ((command == 'roast') and (len(message) > 1)): 
+    name = message[1]
+    target = names.find_one({"name" : name })
     roast = random.choice(target['insults'])
     send_message(roast)
   elif ((command == 'addroast') and (len(message)> 2)):
-      ##get the name and roast
-      roast = " ".join(message[2:]).replace(u"\2019", "'")
+    name = message[1]
+    target = names.find_one({"name" : name })
 
-      #get the current list of roasts for this person
-      current_insults = target['insults']
-      #add the new roast
-      current_insults.append(roast)
-      new_insults = current_insults
+    ##get the name and roast
+    roast = " ".join(message[2:]).replace(u"\2019", "'")
 
-      #update the list in the db to the new list with the new roast
-      names.update_one({"_id" : target["_id"]},
-      {'$set':
-        { 'insults' : new_insults }  
-      })
-  elif((command == 'names') and (len(message) == 2)):
-      names = names.find()
-      names_list = []
-      for name in names:
-        names_list.append(name)
-        
-      send_message(names_list)
+    #get the current list of roasts for this person
+    current_insults = target['insults']
+    #add the new roast
+    current_insults.append(roast)
+    new_insults = current_insults
+
+    #update the list in the db to the new list with the new roast
+    names.update_one({"_id" : target["_id"]},
+    {'$set':
+      { 'insults' : new_insults }  
+    })
+  elif(command == 'names'):
+    people = names.find()
+    names_list = []
+    for person in people:
+      names_list.append(person['name'])
+
+    names_list.sort()
+    print(names_list)
+    send_message(" ".join(names_list))
 
   # We don't want to reply to ourselves
-    return "ok", 200
+  return "ok", 200
 
 def send_message(message):
   groupme  = 'https://api.groupme.com/v3/bots/post'
