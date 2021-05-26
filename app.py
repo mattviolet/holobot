@@ -22,7 +22,7 @@ names = db["names"]
 def webhook():
   print("")
   data = request.get_json()
-  print(data)
+  #print(data)
   ## either [roast, name] or [addRoast, name, insult]
   message = data['text'].split(' ')
   name = message[1]
