@@ -29,7 +29,7 @@ def webhook():
   command = message[0].lower()
 
   if ((command == 'roast') and (len(message) > 1)): 
-    name = message[1]
+    name = message[1].lower()
     target = names.find_one({"name" : name })
     roast = random.choice(target['insults'])
     send_message(roast)
