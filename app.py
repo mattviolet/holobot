@@ -32,7 +32,7 @@ def webhook():
 
   if ((command == 'roast') and (len(message) > 1)): 
     roast = random.choice(target['insults'])
-    send_roast(roast)
+    send_message(roast)
   elif ((command == 'addroast') and (len(message)> 2)):
       ##get the name and roast
       roast = " ".join(message[2:]).replace(u"\2019", "'")
@@ -48,17 +48,24 @@ def webhook():
       {'$set':
         { 'insults' : new_insults }  
       })
+  elif((command == 'names') and (len(message) == 2)):
+      names = names.find()
+      names_list = []
+      for name in names:
+        names_list.append(name)
+        
+      send_message(names_list)
 
   # We don't want to reply to ourselves
-  return "ok", 200
+    return "ok", 200
 
-def send_roast(roast):
+def send_message(message):
   groupme  = 'https://api.groupme.com/v3/bots/post'
   #url = 'http://localhost:5000/'
 
   payload = { 
           'bot_id' : '2e5e052a7c5b46862969084b43', #I want to use a heroku config variable for this to follow best practices :)
-          'text'   : roast,
+          'text'   : message,
          }
 
   reqString = json.dumps(payload)
