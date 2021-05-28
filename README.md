@@ -16,3 +16,4 @@ Example: "curl --header content-Type: application/json" -d "{\"text\":\"roast Vi
 This will send a POST request with the contents: {"text" : "roast Violet"} to port 5000
 which should trigger holobot if everything else is set up correctly.
 
+You might run into some errors while getting things set up. Google the errors, most are probably something you can solve with pip.
