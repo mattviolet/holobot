@@ -15,7 +15,7 @@ import requests
 app = Flask(__name__)
 
 ##change to env variable ASAP
-client = pymongo.MongoClient("mongodb+srv://mviolet:Holobot401!@holotbot.stvmv.mongodb.net/holobot?retryWrites=true&w=majority")
+client = pymongo.MongoClient()
 db = client["holobot"]
 names = db["names"]
 
