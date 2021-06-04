@@ -14,7 +14,8 @@ import requests
 
 app = Flask(__name__)
 
-client = pymongo.MongoClient("mongodb+srv://mviolet:Mlab4016449821@holotbot.stvmv.mongodb.net/holobot?retryWrites=true&w=majority")
+##change to env variable ASAP
+client = pymongo.MongoClient("mongodb+srv://mviolet:Holobot401!@holotbot.stvmv.mongodb.net/holobot?retryWrites=true&w=majority")
 db = client["holobot"]
 names = db["names"]
 
@@ -34,7 +35,7 @@ def webhook():
     roast = random.choice(target['insults'])
     send_message(roast)
   elif ((command == 'addroast') and (len(message)> 2)):
-    name = message[1]
+    name = message[1].lower()
     target = names.find_one({"name" : name })
 
     ##get the name and roast
@@ -67,11 +68,13 @@ def webhook():
   return "ok", 200
 
 def send_message(message):
+  #ENV variable
   groupme  = 'https://api.groupme.com/v3/bots/post'
   #url = 'http://localhost:5000/'
 
+  ##ENV Variable
   payload = { 
-          'bot_id' : '274e7756a1d2efb25d5d832cb6', #I want to use a heroku config variable for this to follow best practices :)
+          'bot_id' : FRIJOLE_BOT_ID, #I want to use a heroku config variable for this to follow best practices :)
           'text'   : message,
          }
 
